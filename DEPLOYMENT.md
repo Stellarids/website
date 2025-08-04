@@ -5,7 +5,7 @@ This guide covers multiple ways to deploy your StellarID landing page to the int
 ## Quick Deploy Options
 
 ### 1. Vercel (Recommended - Easiest)
-
+ 
 Vercel is the company behind Next.js and offers the best Next.js hosting experience.
 
 1. **GitHub Setup**:

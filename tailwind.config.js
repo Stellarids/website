@@ -18,6 +18,7 @@ module.exports = {
         'accent-purple': '#8B5CF6',
         'accent-pink': '#EC4899',
         'accent-cyan': '#06B6D4',
+        'accent-gold': '#F59E0B',
       },
       fontFamily: {
         'inter': ['Inter', 'sans-serif'],
@@ -28,6 +29,7 @@ module.exports = {
         'gradient-accent': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
         'gradient-warm': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
         'gradient-cool': 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+        'gradient-gold': 'linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%)',
         'gradient-stellar': 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
         'gradient-card': 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
         'gradient-border': 'linear-gradient(135deg, rgba(102,126,234,0.5) 0%, rgba(118,75,162,0.5) 50%, rgba(240,147,251,0.5) 100%)',

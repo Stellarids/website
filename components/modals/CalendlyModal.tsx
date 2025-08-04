@@ -55,7 +55,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
 
                 <div className="w-full h-[650px] rounded-2xl overflow-hidden border border-white/10 shadow-glass">
                   <iframe
-                    src="https://calendly.com/your-username/20min"
+                    src="https://calendly.com/aryaman-stellarid/30min"
                     width="100%"
                     height="100%"
                     frameBorder="0"
