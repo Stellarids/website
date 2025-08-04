@@ -128,13 +128,13 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                       Thanks for joining!
                     </h4>
                     <p className="text-text-secondary leading-relaxed">
-                      You'll receive occasional insights on AI-native engineering leadership and be the first to know when we launch to the public.
+                      You&apos;ll receive occasional insights on AI-native engineering leadership and be the first to know when we launch to the public.
                     </p>
                   </div>
                 ) : (
                   <div>
                     <p className="text-text-secondary mb-8 leading-relaxed">
-                      Be the first to know when we launch to the public. We'll also share occasional insights on AI-native engineering leadership.
+                      Be the first to know when we launch to the public. We&apos;ll also share occasional insights on AI-native engineering leadership.
                     </p>
 
                     <form onSubmit={handleSubmit} className="space-y-6">

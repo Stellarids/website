@@ -42,7 +42,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
                     <Dialog.Title as="h3" className="text-3xl font-bold gradient-text mb-2">
                       Schedule an Intro Call
                     </Dialog.Title>
-                    <p className="text-text-secondary">Let's discuss how StellarID can transform your engineering process</p>
+                    <p className="text-text-secondary">Let&apos;s discuss how StellarID can transform your engineering process</p>
                   </div>
                   <button
                     onClick={onClose}
