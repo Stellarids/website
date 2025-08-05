@@ -205,7 +205,7 @@ export default function Home() {
                                 </div>
 
                                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-                                    Finally, Clarity for Your
+                                    Finally, Clarity for Your{" "}
                                     <span className="gradient-text">
                                         Engineering Team.
                                     </span>
