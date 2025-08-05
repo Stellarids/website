@@ -205,7 +205,7 @@ export default function Home() {
                                 </div>
 
                                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-                                    Finally, Clarity for Your{" "}
+                                    Finally, Clarity for Your
                                     <span className="gradient-text">
                                         Engineering Team.
                                     </span>
@@ -214,9 +214,10 @@ export default function Home() {
                                 <p className="text-xl lg:text-2xl text-text-secondary mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                                     We translate the chaos from your code
                                     repositories and project tools into clear,
-                                    actionable insights. Understand your team&apos;s
-                                    true velocity, fix hidden process issues,
-                                    and get objective data on the impact of AI.
+                                    actionable insights. Understand your
+                                    team&apos;s true velocity, fix hidden
+                                    process issues, and get objective data on
+                                    the impact of AI.
                                 </p>
 
                                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 mb-12">
@@ -239,83 +240,100 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            {/* Right Column - Visual Element */}
-                            <div className="relative lg:block hidden">
-                                <div className="relative">
-                                    {/* Main gradient orb */}
-                                    <div className="w-96 h-96 bg-gradient-stellar rounded-full opacity-20 blur-3xl floating-element mx-auto"></div>
+                            {/* START: FINAL UPDATED VISUAL ELEMENT SECTION */}
+                            <div className="relative h-[550px] lg:block hidden">
+                                {/* Main gradient orb - centered */}
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                    <div className="w-96 h-96 bg-gradient-stellar rounded-full opacity-20 blur-3xl floating-element"></div>
+                                </div>
 
-                                    {/* Floating cards */}
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="grid grid-cols-2 gap-8 max-w-2xl">
-                                            <div className="glass-card p-8 max-w-[320px] floating-element shadow-glow">
-                                                <div className="flex items-center gap-4 mb-5">
-                                                    <div className="w-10 h-10 bg-gradient-accent rounded-lg flex items-center justify-center">
-                                                        <Code className="w-6 h-6 text-white" />
-                                                    </div>
-                                                    <span className="text-lg font-semibold text-text-primary">
-                                                        Code Review Alert
-                                                    </span>
-                                                </div>
-                                                <p className="text-base text-text-secondary leading-relaxed">
-                                                    PR #456 is stalled. Suggesting alternate reviewer with context.
-                                                </p>
+                                {/* Floating Card 1: Repositioned */}
+                                <div
+                                    className="absolute top-8 -left-4 z-10 transform -rotate-6 max-w-xs floating-element"
+                                    style={{ animationDelay: "-1s" }}
+                                >
+                                    <div className="glass-card p-5 shadow-glow">
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-10 h-10 bg-gradient-accent rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <Code className="w-6 h-6 text-white" />
                                             </div>
-
-                                            <div
-                                                className="glass-card p-8 max-w-[320px] floating-element shadow-glow"
-                                                style={{ animationDelay: "-2s" }}
-                                            >
-                                                <div className="flex items-center gap-4 mb-5">
-                                                    <div className="w-10 h-10 bg-gradient-gold rounded-lg flex items-center justify-center">
-                                                        <ClipboardCheck className="w-6 h-6 text-white" />
-                                                    </div>
-                                                    <span className="text-lg font-semibold text-text-primary">
-                                                        1-on-1 Talking Point
-                                                    </span>
-                                                </div>
-                                                <p className="text-base text-text-secondary leading-relaxed">
-                                                    Rahul&apos;s latest PR is blocked. A key topic for your meeting tomorrow.
-                                                </p>
-                                            </div>
-
-                                            <div
-                                                className="glass-card p-8 max-w-[320px] floating-element shadow-glow"
-                                                style={{ animationDelay: "-1s" }}
-                                            >
-                                                <div className="flex items-center gap-4 mb-5">
-                                                    <div className="w-10 h-10 bg-gradient-secondary rounded-lg flex items-center justify-center">
-                                                        <AlertTriangle className="w-6 h-6 text-white" />
-                                                    </div>
-                                                    <span className="text-lg font-semibold text-text-primary">
-                                                        Compliance Risk Flagged
-                                                    </span>
-                                                </div>
-                                                <p className="text-base text-text-secondary leading-relaxed">
-                                                    AI-generated function matches a GPLv3 license. Legal review recommended.
-                                                </p>
-                                            </div>
-
-                                            <div
-                                                className="glass-card p-8 max-w-[320px] floating-element shadow-glow"
-                                                style={{ animationDelay: "-3s" }}
-                                            >
-                                                <div className="flex items-center gap-4 mb-5">
-                                                    <div className="w-10 h-10 bg-gradient-warm rounded-lg flex items-center justify-center">
-                                                        <BarChart3 className="w-6 h-6 text-white" />
-                                                    </div>
-                                                    <span className="text-lg font-semibold text-text-primary">
-                                                        Onboarding Accelerated
-                                                    </span>
-                                                </div>
-                                                <p className="text-base text-text-secondary leading-relaxed">
-                                                    AI tools have reduced new hire ramp-up time by 30% this quarter.
-                                                </p>
-                                            </div>
+                                            <span className="text-lg font-semibold text-text-primary">
+                                                Code Review Alert
+                                            </span>
                                         </div>
+                                        <p className="text-sm text-text-secondary leading-relaxed">
+                                            PR #456 is stalled. Suggesting
+                                            alternate reviewer with context.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Floating Card 2: Repositioned */}
+                                <div
+                                    className="absolute top-24 -right-4 z-20 transform rotate-3 max-w-xs floating-element"
+                                    style={{ animationDelay: "-2s" }}
+                                >
+                                    <div className="glass-card p-5 shadow-glow">
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-10 h-10 bg-gradient-gold rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <ClipboardCheck className="w-6 h-6 text-white" />
+                                            </div>
+                                            <span className="text-lg font-semibold text-text-primary">
+                                                1-on-1 Talking Point
+                                            </span>
+                                        </div>
+                                        <p className="text-sm text-text-secondary leading-relaxed">
+                                            Rahul&apos;s latest PR is blocked.
+                                            A key topic for your meeting
+                                            tomorrow.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Floating Card 3: Moved Up and Repositioned */}
+                                <div
+                                    className="absolute bottom-32 -left-12 z-20 transform rotate-4 max-w-xs floating-element"
+                                    style={{ animationDelay: "-3s" }}
+                                >
+                                    <div className="glass-card p-5 shadow-glow">
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-10 h-10 bg-gradient-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <AlertTriangle className="w-6 h-6 text-white" />
+                                            </div>
+                                            <span className="text-lg font-semibold text-text-primary">
+                                                Compliance Risk
+                                            </span>
+                                        </div>
+                                        <p className="text-sm text-text-secondary leading-relaxed">
+                                            AI-generated function matches a
+                                            GPLv3 license. Legal review
+                                            recommended.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Floating Card 4: Repositioned */}
+                                <div
+                                    className="absolute bottom-4 right-4 z-10 transform -rotate-2 max-w-xs floating-element"
+                                    style={{ animationDelay: "-4s" }}
+                                >
+                                    <div className="glass-card p-5 shadow-glow">
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-10 h-10 bg-gradient-warm rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <BarChart3 className="w-6 h-6 text-white" />
+                                            </div>
+                                            <span className="text-lg font-semibold text-text-primary">
+                                                Onboarding Insights
+                                            </span>
+                                        </div>
+                                        <p className="text-sm text-text-secondary leading-relaxed">
+                                            AI tools have reduced new hire
+                                            ramp-up time by 30% this quarter.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
+                            {/* END: FINAL UPDATED VISUAL ELEMENT SECTION */}
                         </div>
                     </div>
                 </section>
@@ -351,8 +369,8 @@ export default function Home() {
                                 </h3>
                                 <p className="text-text-secondary leading-relaxed text-center">
                                     Critical PRs sit idle for days, blocking
-                                    your most important projects, but you don&apos;t
-                                    know why or who to nudge.
+                                    your most important projects, but you
+                                    don&apos;t know why or who to nudge.
                                 </p>
                             </div>
                             <div className="gradient-border p-8 group hover:shadow-glow transition-all duration-500">
@@ -364,8 +382,9 @@ export default function Home() {
                                 </h3>
                                 <p className="text-text-secondary leading-relaxed text-center">
                                     You spend the first half just trying to
-                                    figure out what they&apos;re working on, leaving
-                                    no time for meaningful career conversations.
+                                    figure out what they&apos;re working on,
+                                    leaving no time for meaningful career
+                                    conversations.
                                 </p>
                             </div>
 
@@ -377,9 +396,10 @@ export default function Home() {
                                     You&apos;re flying blind on team health
                                 </h3>
                                 <p className="text-text-secondary leading-relaxed text-center">
-                                    You can&apos;t tell the difference between a team
-                                    that is highly engaged and one that is
-                                    silently burning out until it&apos;s too late.
+                                    You can&apos;t tell the difference between a
+                                    team that is highly engaged and one that is
+                                    silently burning out until it&apos;s too
+                                    late.
                                 </p>
                             </div>
 
@@ -391,10 +411,10 @@ export default function Home() {
                                     AI is a wild card
                                 </h3>
                                 <p className="text-text-secondary leading-relaxed text-center">
-                                    You&apos;ve invested in AI tools, but you have no
-                                    real data on whether they are creating
-                                    high-quality code or just creating more
-                                    rework and hidden risks.
+                                    You&apos;ve invested in AI tools, but you
+                                    have no real data on whether they are
+                                    creating high-quality code or just creating
+                                    more rework and hidden risks.
                                 </p>
                             </div>
                         </div>
@@ -671,7 +691,7 @@ export default function Home() {
 
                                     <button
                                         onClick={openWaitlistModal}
-                                        className="group text-text-secondary hover:text-text-primary transition-all duration-300 flex items-center gap-2"
+                                        className="group text-text-secondary hover:text-text-primary transition-all duration-300 flex items-center gap-2 z-10"
                                     >
                                         <span className="underline-offset-4 group-hover:underline">
                                             Join our private waitlist

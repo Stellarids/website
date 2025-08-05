@@ -32,6 +32,7 @@ export default function Footer({ onWaitlistClick }: FooterProps) {
                             href="https://x.com/stellarIDxyz"
                             className="text-text-muted hover:text-text-primary transition-all duration-300 hover:scale-110"
                             aria-label="Twitter"
+                            target="_blank"
                         >
                             <Twitter size={24} />
                         </a>

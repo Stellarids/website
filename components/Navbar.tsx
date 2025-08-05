@@ -38,7 +38,7 @@ export default function Navbar({ onDesignPartnerClick }: NavbarProps) {
 
           {/* CTA Button */}
           <div>
-            <Button onClick={onDesignPartnerClick} className="text-sm">
+            <Button onClick={onDesignPartnerClick} className="text-sm px-4">
               Become a Design Partner
             </Button>
           </div>
