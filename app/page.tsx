@@ -19,7 +19,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Button from "@/components/Button";
 import CalendlyModal from "@/components/modals/CalendlyModal";
-import WaitlistModal from "@/components/modals/WaitlistModal";
+import TypeformModal from "@/components/modals/TypeformModal";
 
 export default function Home() {
     const [isCalendlyModalOpen, setIsCalendlyModalOpen] = useState(false);
@@ -713,7 +713,7 @@ export default function Home() {
                 onClose={closeCalendlyModal}
             />
 
-            <WaitlistModal
+            <TypeformModal
                 isOpen={isWaitlistModalOpen}
                 onClose={closeWaitlistModal}
             />
