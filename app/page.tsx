@@ -1,12 +1,25 @@
 "use client";
 
-import { useState } from 'react'
-import { Clock, AlertTriangle, TrendingUp, Zap, Shield, BarChart3, Users, Code, Target, ClipboardCheck, ChevronLeft, ChevronRight } from 'lucide-react'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import Button from '@/components/Button'
-import CalendlyModal from '@/components/modals/CalendlyModal'
-import TypeformModal from '@/components/modals/TypeformModal'
+import { useState } from "react";
+import {
+    Clock,
+    AlertTriangle,
+    TrendingUp,
+    Zap,
+    Shield,
+    BarChart3,
+    Users,
+    ClipboardCheck,
+    Code,
+    Target,
+    ChevronLeft,
+    ChevronRight,
+} from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Button from "@/components/Button";
+import CalendlyModal from "@/components/modals/CalendlyModal";
+import WaitlistModal from "@/components/modals/WaitlistModal";
 
 export default function Home() {
     const [isCalendlyModalOpen, setIsCalendlyModalOpen] = useState(false);
@@ -431,238 +444,279 @@ export default function Home() {
                             </p>
                         </div>
 
-            <div className="space-y-16">
-              {/* Insight Example 1 */}
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h3 className="text-3xl font-bold mb-6">
-                    <span className="gradient-text-primary">Uncover</span> Hidden Bottlenecks
-                  </h3>
-                  <div className="glass-card p-8 border-l-4 border-accent-cyan">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-10 h-10 bg-gradient-accent rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                        <Zap className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-accent-cyan mb-2">Insight Alert</h4>
-                        <p className="text-text-secondary italic leading-relaxed">
-                          &ldquo;PR #456 has been waiting for review for 3 days. Our analysis shows the best 
-                          reviewers are on the &apos;@platform-infra&apos; team, who are currently overloaded with 5 other 
-                          high-priority reviews. <span className="text-text-primary font-medium">Suggestion: Consider assigning a secondary reviewer from the 
-                          &apos;@backend-guild&apos; to unblock this.</span>&rdquo;
-                        </p>
-                      </div>
+                        {/* Insights Carousel */}
+                        <div className="relative">
+                            {/* Navigation Dots */}
+                            <div className="flex justify-center mb-12">
+                                <div className="flex space-x-4">
+                                    {insights.map((_, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => goToInsight(index)}
+                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                                index === activeInsight
+                                                    ? "bg-gradient-to-r from-accent-cyan to-accent-purple scale-125"
+                                                    : "bg-white/20 hover:bg-white/40"
+                                            }`}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Carousel Container */}
+                            <div className="relative overflow-hidden">
+                                <div
+                                    className="flex transition-transform duration-500 ease-in-out"
+                                    style={{
+                                        transform: `translateX(-${
+                                            activeInsight * 100
+                                        }%)`,
+                                    }}
+                                >
+                                    {insights.map((insight, index) => (
+                                        <div
+                                            key={index}
+                                            className="w-full flex-shrink-0"
+                                        >
+                                            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                                                <div>
+                                                    <h3 className="text-3xl font-bold mb-6">
+                                                        <span
+                                                            className={
+                                                                insight.gradient
+                                                            }
+                                                        >
+                                                            {
+                                                                insight.title.split(
+                                                                    " "
+                                                                )[0]
+                                                            }
+                                                        </span>{" "}
+                                                        {insight.title
+                                                            .split(" ")
+                                                            .slice(1)
+                                                            .join(" ")}
+                                                    </h3>
+                                                    <div
+                                                        className={`glass-card p-8 border-l-4 ${insight.borderColor}`}
+                                                    >
+                                                        <div className="flex items-start gap-4 mb-4">
+                                                            <div
+                                                                className={`w-10 h-10 ${insight.iconBg} rounded-lg flex items-center justify-center flex-shrink-0 mt-1`}
+                                                            >
+                                                                <insight.icon className="w-5 h-5 text-white" />
+                                                            </div>
+                                                            <div>
+                                                                <h4
+                                                                    className={`font-semibold ${insight.accentColor} mb-2`}
+                                                                >
+                                                                    {
+                                                                        insight
+                                                                            .insight
+                                                                            .title
+                                                                    }
+                                                                </h4>
+                                                                <p className="text-text-secondary italic leading-relaxed">
+                                                                    &ldquo;
+                                                                    {
+                                                                        insight
+                                                                            .insight
+                                                                            .content
+                                                                    }
+                                                                    &rdquo;
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="relative">
+                                                    <div
+                                                        className={`glass-card p-8 bg-gradient-to-br ${insight.bgGradient}`}
+                                                    >
+                                                        <div className="space-y-4">
+                                                            {insight.metrics.map(
+                                                                (
+                                                                    metric,
+                                                                    metricIndex
+                                                                ) => (
+                                                                    <div
+                                                                        key={
+                                                                            metricIndex
+                                                                        }
+                                                                        className="flex justify-between items-center p-4 bg-white/5 rounded-lg"
+                                                                    >
+                                                                        <span className="text-sm">
+                                                                            {
+                                                                                metric.label
+                                                                            }
+                                                                        </span>
+                                                                        <span
+                                                                            className={`${metric.color} font-bold`}
+                                                                        >
+                                                                            {
+                                                                                metric.value
+                                                                            }
+                                                                        </span>
+                                                                    </div>
+                                                                )
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Navigation Arrows */}
+                            <button
+                                onClick={prevInsight}
+                                className="absolute -left-16 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group border border-white/20"
+                            >
+                                <ChevronLeft className="w-7 h-7 text-white group-hover:scale-110 transition-transform duration-300" />
+                            </button>
+                            <button
+                                onClick={nextInsight}
+                                className="absolute -right-16 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group border border-white/20"
+                            >
+                                <ChevronRight className="w-7 h-7 text-white group-hover:scale-110 transition-transform duration-300" />
+                            </button>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div className="relative">
-                  <div className="glass-card p-8 bg-gradient-to-br from-accent-cyan/10 to-transparent">
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                        <span className="text-sm">Review Queue</span>
-                        <span className="text-accent-cyan font-bold">5 PRs</span>
-                      </div>
-                      <div className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                        <span className="text-sm">Avg Review Time</span>
-                        <span className="text-accent-pink font-bold">3.2 days</span>
-                      </div>
-                      <div className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                        <span className="text-sm">Available Reviewers</span>
-                        <span className="text-accent-purple font-bold">@backend-guild</span>
-                      </div>
+                </section>
+
+                {/* Design Partner Program Section */}
+                <section className="relative py-32 px-6 sm:px-8 lg:px-12">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="section-heading mb-8">
+                                <span className="gradient-text">
+                                    Build the future
+                                </span>{" "}
+                                with us
+                            </h2>
+                            <p className="section-subheading max-w-4xl mx-auto">
+                                We are inviting a small group of{" "}
+                                <span className="text-text-primary font-bold">
+                                    five forward-thinking engineering leaders
+                                </span>{" "}
+                                to join our founding design partner program. As
+                                a partner, you will work directly with our
+                                founders to shape the roadmap of a
+                                category-defining product.
+                            </p>
+                        </div>
+
+                        <div className="grid lg:grid-cols-2 gap-16 mb-16">
+                            {/* What you get */}
+                            <div className="glass-card p-10 gradient-border">
+                                <h3 className="text-3xl font-bold mb-8 text-center">
+                                    <span className="gradient-text-primary">
+                                        What you get
+                                    </span>
+                                </h3>
+                                <ul className="space-y-6">
+                                    {[
+                                        "Shape Our Product Roadmap - Partner directly with our founders in monthly strategy sessions.",
+                                        "Exclusive Early Access - Be the first to use our platform and all new features.",
+                                        "Foundational Partner Pricing - Free access during the design partnership and a permanent discount.",
+                                        "Co-Marketing & Case Studies - Build your personal brand as an innovative engineering leader.",
+                                    ].map((item, index) => (
+                                        <li
+                                            key={index}
+                                            className="flex items-start gap-4 group"
+                                        >
+                                            <div className="w-6 h-6 bg-gradient-accent rounded-full flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
+                                                <div className="w-2 h-2 bg-white rounded-full"></div>
+                                            </div>
+                                            <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-300">
+                                                {item}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* Who we're looking for */}
+                            <div className="glass-card p-10 gradient-border">
+                                <h3 className="text-3xl font-bold mb-8 text-center">
+                                    <span className="gradient-text-secondary">
+                                        Who we&apos;re looking for
+                                    </span>
+                                </h3>
+                                <ul className="space-y-6">
+                                    {[
+                                        "Engineering leaders at scaling companies with 50+ engineers.",
+                                        "Teams actively using AI coding tools.",
+                                        "Organizations struggling with engineering velocity and visibility.",
+                                        "Leaders interested in data-driven engineering management.",
+                                        "Partners willing to provide feedback and iterate with us.",
+                                    ].map((item, index) => (
+                                        <li
+                                            key={index}
+                                            className="flex items-start gap-4 group"
+                                        >
+                                            <div className="w-6 h-6 bg-gradient-warm rounded-full flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
+                                                <div className="w-2 h-2 bg-white rounded-full"></div>
+                                            </div>
+                                            <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-300">
+                                                {item}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* CTA Section */}
+                        <div className="text-center glass-card p-12 gradient-border">
+                            <div className="max-w-2xl mx-auto">
+                                <h3 className="text-3xl font-bold mb-6">
+                                    Ready to transform your engineering process?
+                                </h3>
+                                <p className="text-text-secondary mb-8 text-lg">
+                                    Join an exclusive group of engineering
+                                    leaders shaping the future of development
+                                    intelligence.
+                                </p>
+
+                                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                                    <Button
+                                        onClick={openCalendlyModal}
+                                        className="text-lg px-10 py-5 shadow-glow-lg"
+                                    >
+                                        Schedule an Intro Call
+                                    </Button>
+
+                                    <button
+                                        onClick={openWaitlistModal}
+                                        className="group text-text-secondary hover:text-text-primary transition-all duration-300 flex items-center gap-2 z-10"
+                                    >
+                                        <span className="underline-offset-4 group-hover:underline">
+                                            Join our private waitlist
+                                        </span>
+                                        <Target className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                </section>
+            </main>
 
-              {/* Insight Example 2 */}
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div className="order-2 lg:order-1 relative">
-                  <div className="glass-card p-8 bg-gradient-to-br from-accent-purple/10 to-transparent">
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                        <span className="text-sm">AI-Generated Code</span>
-                        <span className="text-accent-cyan font-bold">67%</span>
-                      </div>
-                      <div className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                        <span className="text-sm">Rework Rate</span>
-                        <span className="text-accent-pink font-bold">+35%</span>
-                      </div>
-                      <div className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                        <span className="text-sm">Quality Score</span>
-                        <span className="text-text-muted font-bold">Needs Context</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="order-1 lg:order-2">
-                  <h3 className="text-3xl font-bold mb-6">
-                    <span className="gradient-text-secondary">Understand</span> AI-Generated Quality
-                  </h3>
-                  <div className="glass-card p-8 border-l-4 border-accent-purple">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-10 h-10 bg-gradient-warm rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                        <BarChart3 className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-accent-purple mb-2">Quality Analysis</h4>
-                        <p className="text-text-secondary italic leading-relaxed">
-                          &ldquo;The code generated by Copilot for ticket #PROJ-123 has a 35% higher rework 
-                          rate than human-written code in the same service. <span className="text-text-primary font-medium">Suggestion: The initial prompts may 
-                          require more context about the existing architecture.</span>&rdquo;
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <Footer onWaitlistClick={openWaitlistModal} />
 
-              {/* Insight Example 3 */}
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h3 className="text-3xl font-bold mb-6">
-                    <span className="gradient-text">Mitigate</span> Hidden AI Risks
-                  </h3>
-                  <div className="glass-card p-8 border-l-4 border-accent-pink">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-10 h-10 bg-gradient-secondary rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                        <Shield className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-accent-pink mb-2">Security Warning</h4>
-                        <p className="text-text-secondary italic leading-relaxed">
-                          &ldquo;A new dependency suggested by an AI tool in PR #789 has a GPLv3 license, 
-                          which is incompatible with your company&apos;s compliance policy. <span className="text-text-primary font-medium">Suggestion: Find an 
-                          MIT-licensed alternative like &apos;awesome-lib-mit&apos;.</span>&rdquo;
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="relative">
-                  <div className="glass-card p-8 bg-gradient-to-br from-accent-pink/10 to-transparent">
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                        <span className="text-sm">License Compliance</span>
-                        <span className="text-accent-pink font-bold">GPLv3 Risk</span>
-                      </div>
-                      <div className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                        <span className="text-sm">Suggested Alternative</span>
-                        <span className="text-accent-cyan font-bold">MIT License</span>
-                      </div>
-                      <div className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                        <span className="text-sm">Risk Level</span>
-                        <span className="text-accent-purple font-bold">High</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+            {/* Modals */}
+            <CalendlyModal
+                isOpen={isCalendlyModalOpen}
+                onClose={closeCalendlyModal}
+            />
 
-        {/* Design Partner Program Section */}
-        <section className="relative py-32 px-6 sm:px-8 lg:px-12">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="section-heading mb-8">
-                <span className="gradient-text">Build the future</span> with us
-              </h2>
-              <p className="section-subheading max-w-4xl mx-auto">
-                We are inviting a small group of <span className="text-text-primary font-bold">five forward-thinking engineering leaders</span> to join our 
-                founding design partner program. As a partner, you will work directly with our founders 
-                to shape the roadmap of a category-defining product.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-16 mb-16">
-              {/* What you get */}
-              <div className="glass-card p-10 gradient-border">
-                <h3 className="text-3xl font-bold mb-8 text-center">
-                  <span className="gradient-text-primary">What you get</span>
-                </h3>
-                <ul className="space-y-6">
-                  {[
-                    "Exclusive early access to our platform during development",
-                    "Direct input on feature prioritization and product roadmap",
-                    "Monthly strategy sessions with our founding team",
-                    "Significantly discounted pricing for the first two years",
-                    "Co-marketing opportunities and case study development"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-4 group">
-                      <div className="w-6 h-6 bg-gradient-accent rounded-full flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
-                      </div>
-                      <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-300">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Who we&apos;re looking for */}
-              <div className="glass-card p-10 gradient-border">
-                <h3 className="text-3xl font-bold mb-8 text-center">
-                  <span className="gradient-text-secondary">Who we&apos;re looking for</span>
-                </h3>
-                <ul className="space-y-6">
-                  {[
-                    "Engineering leaders at companies with 50+ engineers",
-                    "Teams actively using AI coding tools (GitHub Copilot, etc.)",
-                    "Organizations struggling with engineering velocity and visibility",
-                    "Leaders interested in data-driven engineering management",
-                    "Teams willing to provide feedback and iterate with us"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-4 group">
-                      <div className="w-6 h-6 bg-gradient-warm rounded-full flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
-                      </div>
-                      <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-300">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* CTA Section */}
-            <div className="text-center glass-card p-12 gradient-border">
-              <div className="max-w-2xl mx-auto">
-                <h3 className="text-3xl font-bold mb-6">Ready to transform your engineering process?</h3>
-                <p className="text-text-secondary mb-8 text-lg">
-                  Join an exclusive group of engineering leaders shaping the future of development intelligence.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                  <Button onClick={openCalendlyModal} className="text-lg px-10 py-5 shadow-glow-lg">
-                    Schedule a 20-Minute Intro Call
-                  </Button>
-                  
-                  <button 
-                    onClick={openWaitlistModal}
-                    className="group text-text-secondary hover:text-text-primary transition-all duration-300 flex items-center gap-2"
-                  >
-                    <span className="underline-offset-4 group-hover:underline">Or, join our private waitlist</span>
-                    <Target className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-
-      {/* Modals */}
-      <CalendlyModal 
-        isOpen={isCalendlyModalOpen} 
-        onClose={closeCalendlyModal} 
-      />
-      
-      <TypeformModal 
-        isOpen={isWaitlistModalOpen} 
-        onClose={closeWaitlistModal} 
-      />
-    </>
-  )
+            <WaitlistModal
+                isOpen={isWaitlistModalOpen}
+                onClose={closeWaitlistModal}
+            />
+        </>
+    );
 }
